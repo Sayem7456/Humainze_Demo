@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanize AI - Make Your AI Text Sound Authentically Human</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/dm-sans@1.0.0/dist/dm-sans.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/open-sans@1.0.0/open-sans.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0F62FE;
+            --accent-color: #F9A826;
+            --background-color: #F7F9FB;
+            --text-color: #1B1F23;
+            --button-hover: #0041C2;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Sans', 'Inter', sans-serif;
+            font-weight: 700;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a45b3 100%);
+            color: white;
+            padding: 6rem 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #e09315;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            background-color: #e6f0ff;
+            color: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-input, .text-output {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            font-family: 'Fira Code', 'Source Code Pro', monospace;
+            resize: none;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .pricing-header {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end);
+            margin: 0 auto;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        .section-container {
+            padding: 5rem 1rem;
+        }
+
+        #metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .before-after-container {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .before-box, .after-box {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .before-box {
+            background-color: #fef3c7;
+            border: 1px solid #fbbf24;
+        }
+
+        .after-box {
+            background-color: #dcfce7;
+            border: 1px solid #34d399;
+        }
+        
+        .ai-score {
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .high-ai {
+            background-color: #fee2e2;
+            color: #ef4444;
+        }
+        
+        .low-ai {
+            background-color: #dcfce7;
+            color: #10b981;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-6xl mb-6 leading-tight">Make Your AI Text Sound Authentically Human</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Transform robotic AI drafts into fluent, natural writing.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="#demo" class="btn-primary">Try the Demo</a>
+                <a href="#waitlist" class="btn-secondary">Join Beta</a>
+            </div>
+            
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+                <div class="before-after-container">
+                    <div class="before-box">
+                        <span class="ai-score high-ai">AI Score: 92%</span>
+                        <p>The utilization of artificial intelligence technologies can significantly enhance productivity metrics across various operational domains.</p>
+                    </div>
+                    <div class="after-box">
+                        <span class="ai-score low-ai">AI Score: 12%</span>
+                        <p>Using AI tools can really boost your team's productivity in many different areas of your work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="section-container bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">Why Human-Like Writing Still Matters</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl mb-4">The Problem</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-robot text-red-500 mt-1 mr-3"></i>
+                            <span>AI content is easily detectable by both humans and AI detectors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-sync text-red-500 mt-1 mr-3"></i>
+                            <span>Generated text is often repetitive and uses predictable patterns</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3"></i>
+                            <span>Awkward phrasing and unnatural transitions stand out to readers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-comment-slash text-red-500 mt-1 mr-3"></i>
+                            <span>Lacks authentic voice and personality that connects with audience</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl mb-4">Our Solution</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Transforms AI-generated text into naturally flowing human writing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-bolt text-green-500 mt-1 mr-3"></i>
+                            <span>Instant rewriting with preservation of original meaning and intent</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-fingerprint text-green-500 mt-1 mr-3"></i>
+                            <span>Adds authentic human variation and unpredictability to your content</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-green-500 mt-1 mr-3"></i>
+                            <span>Bypasses AI detection with truly human-like text patterns</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="metrics" class="mt-16">
+                <div class="metric-item">
+                    <div class="metric-value">93%</div>
+                    <div class="metric-label">Reduction in AI Detection</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">85%</div>
+                    <div class="metric-label">More Natural Phrasing</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">3x</div>
+                    <div class="metric-label">Faster than Manual Editing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section-container" style="background-color: var(--background-color);">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">What Makes Humanize AI Different?</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Real Human-Style Rewriting</h3>
+                    <p class="text-center">Our model was trained on authentic human writing variations, not just more AI text.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">AI Probability Score</h3>
+                    <p class="text-center">See before/after scores showing how human-like your text has become.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Fine-Tuned Custom Model</h3>
+                    <p class="text-center">Built specifically for humanizing AI text, not a general-purpose language model.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Fast & Private</h3>
+                    <p class="text-center">No login required. Process text instantly with complete privacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="section-container bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">Try It Yourself</h2>
+            
+            <div class="demo-container max-w-4xl mx-auto">
+                <div class="mb-6">
+                    <label for="input-text" class="block mb-2 text-lg font-medium">Paste your AI-generated text:</label>
+                    <textarea id="input-text" class="text-input" placeholder="Paste your AI-generated text here...">The utilization of artificial intelligence technologies can significantly enhance productivity metrics across various operational domains. Implementation of such solutions facilitates the automation of repetitive tasks, enabling human resources to focus on more complex and creative endeavors. Additionally, it can lead to cost reduction and efficiency improvements.</textarea>
+                </div>
+                
+                <div class="flex justify-center mb-6">
+                    <button id="rewrite-btn" class="btn-primary">
+                        <i class="fas fa-magic mr-2"></i>Humanize Text
+                    </button>
+                </div>
+                
+                <div>
+                    <label for="output-text" class="block mb-2 text-lg font-medium">Humanized result:</label>
+                    <textarea id="output-text" class="text-output" placeholder="Your humanized text will appear here..." readonly></textarea>
+                    <div class="flex justify-between mt-2">
+                        <div>
+                            <span class="text-sm">AI Detection Score: </span>
+                            <span id="ai-score" class="text-sm font-bold text-red-500">0%</span>
+                        </div>
+                        <button id="copy-btn" class="text-sm text-gray-600 hover:text-gray-900">
+                            <i class="far fa-copy mr-1"></i>Copy to clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-container" style="background-color: var(--background-color);">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">What Our Beta Users Say</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"This feels 10x more human than GPT. I've been using it for my marketing copy and clients can't tell the difference from my hand-written work."</p>
+                    <div class="font-semibold">- Sarah K.</div>
+                    <div class="text-sm text-gray-500">Marketing Director</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"I actually trust this for academic writing. It keeps my ideas intact but makes the language flow naturally. Passed multiple AI detection tools."</p>
+                    <div class="font-semibold">- Prof. James R.</div>
+                    <div class="text-sm text-gray-500">University Researcher</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"Our content team output increased by 40% while maintaining quality. The rewritten content performs better in engagement metrics across all channels."</p>
+                    <div class="font-semibold">- Michael T.</div>
+                    <div class="text-sm text-gray-500">Content Manager</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section-container bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">Simple, Transparent Pricing</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="pricing-card border-2 border-gray-200">
+                    <div class="pricing-header text-center">
+                        <h3 class="text-2xl font-bold">Free</h3>
+                        <div class="text-3xl font-bold my-4">$0</div>
+                        <p class="text-gray-600">Perfect for trying it out</p>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>1,000 words per month</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Basic humanization</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>AI detection score</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-times text-red-400 mr-3"></i>
+                            <span class="text-gray-500">API access</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-times text-red-400 mr-3"></i>
+                            <span class="text-gray-500">Priority processing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="#demo" class="btn-secondary">Start Free</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card border-2 border-primary-color" style="border-color: var(--primary-color);">
+                    <div class="pricing-header text-center">
+                        <h3 class="text-2xl font-bold">Pro</h3>
+                        <div class="text-3xl font-bold my-4">$19<span class="text-base font-normal">/month</span></div>
+                        <p class="text-gray-600">For professionals & teams</p>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>20,000 words per month</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced humanization</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>AI detection score</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>API access</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Priority processing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="#waitlist" class="btn-primary">Join Waitlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="waitlist" class="section-container" style="background: linear-gradient(135deg, var(--primary-color) 0%, #1a45b3 100%); color: white;">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-3xl md:text-4xl mb-6">Ready for More Human AI Writing?</h2>
+            <p class="text-xl max-w-2xl mx-auto mb-8">Be among the first to access our full suite of AI humanization tools.</p>
+            
+            <div class="max-w-md mx-auto bg-white rounded-lg p-6 shadow-lg">
+                <form id="waitlist-form">
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border rounded-md" placeholder="your@email.com" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="use-case" class="block text-gray-700 mb-2">How will you use Humanize AI?</label>
+                        <select id="use-case" class="w-full px-4 py-2 border rounded-md">
+                            <option>Content Marketing</option>
+                            <option>Academic Writing</option>
+                            <option>Creative Writing</option>
+                            <option>Business Communications</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary w-full">Join the Waitlist</button>
+                </form>
+                <p class="text-gray-600 text-sm mt-4">No credit card. No login. Just better writing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Humanize AI</h3>
+                    <p class="text-gray-300">Making AI-generated content indistinguishable from human writing.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#demo" class="text-gray-300 hover:text-white">Try the Demo</a></li>
+                        <li><a href="#waitlist" class="text-gray-300 hover:text-white">Join Beta</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white text-xl"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2023 Humanize AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Demo functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const rewriteBtn = document.getElementById('rewrite-btn');
+            const inputText = document.getElementById('input-text');
+            const outputText = document.getElementById('output-text');
+            const aiScore = document.getElementById('ai-score');
+            const copyBtn = document.getElementById('copy-btn');
+            const waitlistForm = document.getElementById('waitlist-form');
+            
+            // Example rewritten texts for demo
+            const rewrittenOptions = [
+                "AI tools can really boost your team's productivity in all sorts of ways. They help automate the boring stuff, freeing up your people to tackle more interesting and creative work. Plus, you'll likely save money and get things done faster too.",
+                "Using AI can seriously improve how productive your team is across different areas. It takes care of repetitive tasks automatically, which means your staff can focus on more complex and creative work. You'll probably cut costs and work more efficiently too.",
+                "AI technology can dramatically boost productivity in various parts of your business. By automating routine tasks, it lets your team concentrate on more challenging and creative projects. You'll also likely reduce expenses and improve efficiency."
+            ];
+            
+            rewriteBtn.addEventListener('click', function() {
+                if (inputText.value.trim() === '') {
+                    outputText.value = 'Please enter some text to humanize.';
+                    return;
+                }
+                
+                // Show loading state
+                outputText.value = 'Humanizing your text...';
+                rewriteBtn.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(function() {
+                    // Choose a random rewritten option
+                    const randomIndex = Math.floor(Math.random() * rewrittenOptions.length);
+                    outputText.value = rewrittenOptions[randomIndex];
+                    
+                    // Show a low AI detection score
+                    const randomScore = Math.floor(Math.random() * 15) + 5; // Random score between 5-20%
+                    aiScore.textContent = randomScore + '%';
+                    aiScore.className = 'text-sm font-bold text-green-500';
+                    
+                    rewriteBtn.disabled = false;
+                }, 1500);
+            });
+            
+            // Copy functionality
+            copyBtn.addEventListener('click', function() {
+                outputText.select();
+                document.execCommand('copy');
+                copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+                setTimeout(function() {
+                    copyBtn.innerHTML = '<i class="far fa-copy mr-1"></i>Copy to clipboard';
+                }, 2000);
+            });
+            
+            // Waitlist form submission
+            waitlistForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const useCase = document.getElementById('use-case').value;
+                
+                // Simulate form submission
+                waitlistForm.innerHTML = '<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-primary-color text-2xl mb-4" style="color: var(--primary-color);"></i><p>Processing your request...</p></div>';
+                
+                setTimeout(function() {
+                    waitlistForm.innerHTML = '<div class="text-center py-4"><i class="fas fa-check-circle text-green-500 text-4xl mb-4"></i><p>Thank you for joining our waitlist!</p><p class="text-gray-600 mt-2">We\'ll contact you when your access is ready.</p></div>';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
